@@ -5,46 +5,23 @@
 
 {% if object_list %}
 <ul>
-    <table class="table">
-   
-
-
-    <thead class="thead-dark">
-        <tr>
-            <!--  <th>Id</th>  -->
-            <th>Book</th>
-            <th>Imprint</th>
-            <th>due_back</th>
-            <th>borrower</th>
-            <th>status</th>
-        </tr>
-    </thead>
+  
     {% for bookinst in object_list %}
 
-    <tbody>
-        <tr>
             <!--<td>{{ bookinst.id }}</td>  -->
-            <td>{{ bookinst.book }} </td>
-            <td>{{ bookinst.imprint }} </td>
-            <td>{{ bookinst.due_back }}</td>
-            <td>{{ bookinst.borrower }}</td>
-            <td>{{ bookinst.status }} </td>
-
-        </tr>
-    </tbody>
-
-
+            <li>
+                <a href=" {% url 'book-detail' bookinst.book.pk %} ">{{ bookinst.book }}</a>
+                ({{ bookinst.due_back }}) - 
+                {{ bookinst.borrower }} 
+            </li>
     <!--
     <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
         <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
     </li>
      -->
 
-
-
-
     {% endfor %}
-    </table>
+    
 </ul>
 
 {% else %}
